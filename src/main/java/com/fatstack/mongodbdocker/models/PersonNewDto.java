@@ -1,52 +1,44 @@
 package com.fatstack.mongodbdocker.models;
 
 import com.fatstack.mongodbdocker.constants.Gender;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import javax.validation.constraints.Size;
 
-@Document
-public class Person {
-    @Id
-    private String id;
+public class PersonNewDto {
+    @NotEmpty
+    @Size(min = 6, max = 10)
     private String username;
-    private String fullName;
-    private String password;
-    private Long dateOfBirth;
-    private Gender gender;
-    private Address address;
-    private Long createdAt;
 
-    public Person(String id, String username, String fullName, String password, Long dateOfBirth, Gender gender, Address address, Long createdAt) {
-        this.id = id;
+    @NotEmpty
+    private String fullName;
+
+    @NotEmpty
+    private String password;
+
+    @Min(100L)
+    private Long dateOfBirth;
+
+    @NotNull
+    private Gender gender;
+
+    @NotNull
+    @Valid
+    private Address address;
+
+    public PersonNewDto(String username, String fullName, String password, Long dateOfBirth, Gender gender, Address address) {
         this.username = username;
         this.fullName = fullName;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.address = address;
-        this.createdAt = createdAt;
     }
 
-    public Long getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Long createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Person() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public PersonNewDto() {
     }
 
     public String getUsername() {

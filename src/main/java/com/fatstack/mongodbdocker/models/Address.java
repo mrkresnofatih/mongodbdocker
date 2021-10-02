@@ -1,8 +1,15 @@
 package com.fatstack.mongodbdocker.models;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Address {
+    @NotEmpty
     private String street;
+
+    @NotEmpty
     private String city;
+
+    @NotEmpty
     private String postalCode;
 
     public Address(String street, String city, String postalCode) {

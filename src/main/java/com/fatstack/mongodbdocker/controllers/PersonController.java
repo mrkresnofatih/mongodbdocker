@@ -1,12 +1,14 @@
 package com.fatstack.mongodbdocker.controllers;
 
 import com.fatstack.mongodbdocker.models.Person;
+import com.fatstack.mongodbdocker.models.PersonNewDto;
 import com.fatstack.mongodbdocker.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
@@ -20,7 +22,7 @@ public class PersonController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Person> createNewPerson(@RequestBody Person person){
+    public ResponseEntity<Person> createNewPerson(@Valid @RequestBody PersonNewDto person){
         var newPerson = personService.addPerson(person);
         return new ResponseEntity<>(newPerson, HttpStatus.OK);
     }
