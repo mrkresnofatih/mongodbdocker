@@ -29,13 +29,32 @@ public class PersonNewDto {
     @Valid
     private Address address;
 
-    public PersonNewDto(String username, String fullName, String password, Long dateOfBirth, Gender gender, Address address) {
+    @NotNull
+    @Valid
+    private WorkDetails workDetails;
+
+    public PersonNewDto(String username,
+                        String fullName,
+                        String password,
+                        Long dateOfBirth,
+                        Gender gender,
+                        Address address,
+                        WorkDetails workDetails) {
         this.username = username;
         this.fullName = fullName;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.address = address;
+        this.workDetails = workDetails;
+    }
+
+    public WorkDetails getWorkDetails() {
+        return workDetails;
+    }
+
+    public void setWorkDetails(WorkDetails workDetails) {
+        this.workDetails = workDetails;
     }
 
     public PersonNewDto() {

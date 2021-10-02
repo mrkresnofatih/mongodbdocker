@@ -4,9 +4,6 @@ import com.fatstack.mongodbdocker.constants.Gender;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
-import java.util.List;
-
 @Document
 public class Person {
     @Id
@@ -18,8 +15,17 @@ public class Person {
     private Gender gender;
     private Address address;
     private Long createdAt;
+    private WorkDetails workDetails;
 
-    public Person(String id, String username, String fullName, String password, Long dateOfBirth, Gender gender, Address address, Long createdAt) {
+    public Person(String id,
+                  String username,
+                  String fullName,
+                  String password,
+                  Long dateOfBirth,
+                  Gender gender,
+                  Address address,
+                  Long createdAt,
+                  WorkDetails workDetails) {
         this.id = id;
         this.username = username;
         this.fullName = fullName;
@@ -28,6 +34,18 @@ public class Person {
         this.gender = gender;
         this.address = address;
         this.createdAt = createdAt;
+        this.workDetails = workDetails;
+    }
+
+    public Person() {
+    }
+
+    public WorkDetails getWorkDetails() {
+        return workDetails;
+    }
+
+    public void setWorkDetails(WorkDetails workDetails) {
+        this.workDetails = workDetails;
     }
 
     public Long getCreatedAt() {
@@ -36,9 +54,6 @@ public class Person {
 
     public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Person() {
     }
 
     public String getId() {
